@@ -9,12 +9,28 @@
             font-family: Arial, sans-serif;
             color: #ddd;
             text-align: center;
-            padding: 20px;
+            padding: 0;
             margin: 0;
             overflow: hidden;
             background: #000;
             position: relative;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 90%;
+            width: 800px;
+            background-color: rgba(40, 40, 40, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            margin: 0;
         }
         
         h1 {
@@ -35,18 +51,6 @@
             60% {
                 transform: translateY(-15px);
             }
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: rgba(40, 40, 40, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
         }
         
         label {
@@ -71,6 +75,8 @@
             cursor: pointer;
             transition: background-color 0.3s;
             position: relative;
+            width: 100%;
+            text-align: center;
         }
         
         .custom-file-upload:hover {
@@ -85,26 +91,29 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #444; /* Darker button background */
+            background-color: #444;
             color: white;
             cursor: pointer;
             font-size: 1.2em;
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
         }
         
         button:hover {
-            background-color: #666; /* Darker button on hover */
+            background-color: #666;
         }
         
         .results {
             margin-top: 20px;
             font-size: 1.2em;
-            max-height: 400px; /* Adjust this value as needed */
-            overflow-y: auto; /* Enables vertical scrolling */
-            background-color: rgba(50, 50, 50, 0.9); /* Background for visibility */
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: rgba(50, 50, 50, 0.9);
             border-radius: 8px;
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: none; /* Hide results initially */
+            display: none;
         }
         
         .results ul {
@@ -129,6 +138,19 @@
         
         .emoji {
             font-size: 1.5em;
+        }
+        
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2;
+        }
+
+        .language-selector img {
+            width: 40px;
+            cursor: pointer;
+            margin-left: 10px;
         }
         
         /* Matrix Rain Effect */
@@ -158,20 +180,6 @@
                 transform: translateY(100vh);
             }
         }
-
-        /* Language Selector */
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-        }
-
-        .language-selector img {
-            width: 40px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
     </style>
 </head>
 <body>
@@ -185,17 +193,17 @@
     <div class="container">
         <h1 id="title">Instagram Follow Checker 😎📉</h1>
         <p class="emoji" id="description">Upload your "Following" and "Followers" JSON files below to find out who’s not following you back! 📂🕵️‍♂️</p>
-        <form id="uploadForm">
-            <label for="followingFile" class="custom-file-upload">
-                <span id="followingFileName">Choose "Following" JSON file 📁</span>
-            </label>
-            <input type="file" id="followingFile" accept=".json" required>
+        <form id="uploadForm"> 
+  
             
             <label for="followersFile" class="custom-file-upload">
                 <span id="followersFileName">Choose "Followers" JSON file 📁</span>
             </label>
             <input type="file" id="followersFile" accept=".json" required>
-            
+                      <label for="followingFile" class="custom-file-upload">
+                <span id="followingFileName">Choose "Following" JSON file 📁</span>
+            </label>
+            <input type="file" id="followingFile" accept=".json" required>
             <button type="button" onclick="checkFollowers()" id="checkButton">Check Now 🚀</button>
         </form>
         <div class="results" id="results">
@@ -294,7 +302,6 @@
             return userInfo;
         }
 
-        // Matrix Rain Effect
         function createMatrixRain() {
             const matrixContainer = document.querySelector('.matrix');
             const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
