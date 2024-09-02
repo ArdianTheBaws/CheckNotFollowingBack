@@ -5,181 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram Follow Checker 😎📉</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            color: #ddd;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            max-width: 90%;
-            width: 800px;
-            background-color: rgba(40, 40, 40, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            margin: 0;
-        }
-        
-        h1 {
-            color: #0f0;
-            font-size: 2.5em;
-            margin: 0;
-            padding: 0.5em;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-        
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #0f0;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .custom-file-upload {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #fff;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .custom-file-upload:hover {
-            background-color: #555;
-        }
-        
-        input[type="file"] {
-            display: none;
-        }
-        
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #444;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2em;
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-        }
-        
-        button:hover {
-            background-color: #666;
-        }
-        
-        .results {
-            margin-top: 20px;
-            font-size: 1.2em;
-            max-height: 400px;
-            overflow-y: auto;
-            background-color: rgba(50, 50, 50, 0.9);
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-        
-        .results ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .results li {
-            margin: 10px 0;
-        }
-        
-        .results a {
-            text-decoration: none;
-            color: #1e90ff;
-            font-weight: bold;
-        }
-        
-        .results a:hover {
-            text-decoration: underline;
-        }
-        
-        .emoji {
-            font-size: 1.5em;
-        }
-        
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-        }
+body {
+    font-family: Arial, sans-serif;
+    color: #ddd;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background: #000;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .language-selector img {
-            width: 40px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        
-        /* Matrix Rain Effect */
-        .matrix {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
+.container {
+    max-width: 90%;
+    width: 800px;
+    background-color: rgba(40, 40, 40, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    margin: 0;
+}
 
-        .matrix span {
-            position: absolute;
-            color: #0f0;
-            font-family: monospace;
-            font-size: 20px;
-            white-space: nowrap;
-            opacity: 0.8;
-            animation: rain 5s linear infinite;
-        }
+h1 {
+    color: #0f0;
+    font-size: 2.5em;
+    margin: 0;
+    padding: 0.5em;
+    animation: bounce 2s infinite;
+}
 
-        @keyframes rain {
-            to {
-                transform: translateY(100vh);
-            }
-        }
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #0f0;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.custom-file-upload:hover {
+    background-color: #555;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+.results {
+    margin-top: 20px;
+    font-size: 1.2em;
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: rgba(50, 50, 50, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.results li {
+    margin: 10px 0;
+}
+
+.results a {
+    text-decoration: none;
+    color: #1e90ff;
+    font-weight: bold;
+}
+
+.results a:hover {
+    text-decoration: underline;
+}
+
+.emoji {
+    font-size: 1.5em;
+}
+
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2;
+}
+
+.language-selector img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Matrix Rain Effect */
+.matrix {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.matrix span {
+    position: absolute;
+    color: #0f0;
+    font-family: monospace;
+    font-size: 20px;
+    white-space: nowrap;
+    opacity: 0.8;
+    animation: rain 5s linear infinite;
+}
+
+@keyframes rain {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* Collapsible Guide Box */
+.collapsible {
+    cursor: pointer;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2em; /* Adjust font size for better readability */
+}
+
+.collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible.active {
+    background-color: #444;
+}
+
+.content {
+    display: none;
+    padding: 20px;
+    background-color: rgba(50, 50, 50, 0.9);
+    border: 1px solid #555;
+    border-radius: 5px;
+    margin-top: 10px;
+    max-height: 400px; /* Increase max-height for more content */
+    overflow-y: auto;
+    text-align: left; /* Align text to the left for better readability */
+    font-size: 1em; /* Adjust font size */
+}
+
+.content ul, .content ol {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.content li {
+    margin: 10px 0;
+}
     </style>
 </head>
 <body>
@@ -194,13 +239,11 @@
         <h1 id="title">Instagram Follow Checker 😎📉</h1>
         <p class="emoji" id="description">Upload your "Following" and "Followers" JSON files below to find out who’s not following you back! 📂🕵️‍♂️</p>
         <form id="uploadForm"> 
-  
-            
             <label for="followersFile" class="custom-file-upload">
                 <span id="followersFileName">Choose "Followers" JSON file 📁</span>
             </label>
             <input type="file" id="followersFile" accept=".json" required>
-                      <label for="followingFile" class="custom-file-upload">
+            <label for="followingFile" class="custom-file-upload">
                 <span id="followingFileName">Choose "Following" JSON file 📁</span>
             </label>
             <input type="file" id="followingFile" accept=".json" required>
@@ -209,21 +252,55 @@
         <div class="results" id="results">
             <!-- Results will be inserted here -->
         </div>
+        <button class="collapsible">How to Get the Files Needed 📁</button>
+        <div class="content">
+            <h2>How to Download Your Instagram Data in JSON Format</h2>
+            <ol>
+                <li><strong>Request Your Instagram Data</strong>
+                    <ul>
+                        <li>Go to Instagram on your app or <a href="https://www.instagram.com" target="_blank">instagram.com</a>.</li>
+                        <li>Navigate to <strong>Settings</strong>.</li>
+                        <li>Select <strong>Your activity and ads</strong> > <strong>Download your information</strong>.</li>
+                        <li>Choose <strong>JSON</strong> as the file format.</li>
+                        <li>Enter your email to receive the download link.</li>
+                        <li>Select the data (e.g., followers, following) you want to download.</li>
+                        <li>Click <strong>Next</strong> and enter your password to confirm.</li>
+                    </ul>
+                </li>
+                <li><strong>Download the Data</strong>
+                    <ul>
+                        <li>Check your email for the download link from Instagram.</li>
+                        <li>Click the link and log in to your account if prompted.</li>
+                        <li>Download the ZIP file containing your data.</li>
+                    </ul>
+                </li>
+                <li><strong>Extract the Data</strong>
+                    <ul>
+                        <li>Unzip the downloaded file on your computer.</li>
+                        <li>Locate the <strong>followers_and_following</strong> folder inside the unzipped contents.</li>
+                        <li>Find the JSON files for <strong>followers</strong> and <strong>
+
+following</strong>.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
     </div>
+
     <script>
         const translations = {
             en: {
-                title: "Instagram Follow Checker 😎📉",
+                title: 'Instagram Follow Checker 😎📉',
                 description: 'Upload your "Following" and "Followers" JSON files below to find out who’s not following you back! 📂🕵️‍♂️',
                 followingFileName: 'Choose "Following" JSON file 📁',
                 followersFileName: 'Choose "Followers" JSON file 📁',
                 checkButton: 'Check Now 🚀',
                 noResults: 'No results yet. Upload files to check. 🌟',
-                error: 'Error parsing JSON file.',
-                resultsHeader: 'Oops! 🚫 Here’s the list of users not following you back:'
+                error: 'Error parsing the JSON file.',
+                resultsHeader: 'Oops! 🚫 Here are the users who are not following you back:'
             },
             no: {
-                title: "Instagram Følge Sjekker 😎📉",
+                title: 'Instagram Følger Sjekker 😎📉',
                 description: 'Last opp dine "Following" og "Followers" JSON-filer nedenfor for å finne ut hvem som ikke følger deg tilbake! 📂🕵️‍♂️',
                 followingFileName: 'Velg "Following" JSON-fil 📁',
                 followersFileName: 'Velg "Followers" JSON-fil 📁',
@@ -276,61 +353,69 @@
 
                     const resultsDiv = document.getElementById('results');
                     resultsDiv.innerHTML = notFollowingBack 
-                        ? `<h2>${translations[document.querySelector('html').lang || 'en'].resultsHeader}</h2><ul>${notFollowingBack}</ul>` 
+                        ? `<h3>${translations[document.querySelector('html').lang || 'en'].resultsHeader}</h3><ul>${notFollowingBack}</ul>` 
                         : `<p>${translations[document.querySelector('html').lang || 'en'].noResults}</p>`;
                     
-                    // Show results div
                     resultsDiv.style.display = 'block';
                 });
             });
         }
 
-        function extractUserInfo(data, key) {
-            const userInfo = {};
-            const items = key ? data[key] || [] : data;
-
-            items.forEach(entry => {
-                (entry.string_list_data || []).forEach(item => {
-                    const username = item.value;
-                    const link = item.href;
-                    if (username && link) {
-                        userInfo[username] = link;
-                    }
+        function extractUserInfo(data, key = 'relationships_followers') {
+            const users = {};
+            if (data[key]) {
+                data[key].forEach(entry => {
+                    users[entry.string_list_data[0].value] = entry.string_list_data[0].href;
                 });
-            });
-
-            return userInfo;
-        }
-
-        function createMatrixRain() {
-            const matrixContainer = document.querySelector('.matrix');
-            const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-            const characterArray = characters.split('');
-            const matrixWidth = window.innerWidth;
-            const matrixHeight = window.innerHeight;
-
-            for (let i = 0; i < 100; i++) {
-                const span = document.createElement('span');
-                span.textContent = characterArray[Math.floor(Math.random() * characterArray.length)];
-                span.style.left = `${Math.random() * matrixWidth}px`;
-                span.style.top = `${Math.random() * matrixHeight}px`;
-                span.style.fontSize = `${Math.random() * 20 + 15}px`;
-                span.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                matrixContainer.appendChild(span);
             }
+            return users;
         }
 
-        function handleFileChange(event) {
-            const fileInput = event.target;
-            const label = fileInput.previousElementSibling;
-            const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Choose file';
-            label.querySelector('span').textContent = fileName;
+        // Update file label when a file is selected
+        document.getElementById('followingFile').addEventListener('change', function() {
+            document.getElementById('followingFileName').textContent = this.files[0].name;
+        });
+
+        document.getElementById('followersFile').addEventListener('change', function() {
+            document.getElementById('followersFileName').textContent = this.files[0].name;
+        });
+
+        // Collapsible guide box
+        const collapsible = document.querySelector('.collapsible');
+        const content = document.querySelector('.content');
+
+        collapsible.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+
+        // Matrix rain effect generation
+        const matrix = document.querySelector('.matrix');
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}';
+        const matrixColumns = matrix.clientWidth / 20;
+
+        for (let i = 0; i < matrixColumns; i++) {
+            const span = document.createElement('span');
+            span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+            span.style.left = i * 20 + 'px';
+            span.style.animationDuration = Math.random() * 3 + 2 + 's';
+            span.style.fontSize = Math.random() * 20 + 15 + 'px';
+            matrix.appendChild(span);
         }
 
-        document.getElementById('followingFile').addEventListener('change', handleFileChange);
-        document.getElementById('followersFile').addEventListener('change', handleFileChange);
-
-        window.addEventListener('load', createMatrixRain);
+        setInterval(function() {
+            matrix.querySelectorAll('span').forEach(span => {
+                if (span.getBoundingClientRect().top >= window.innerHeight) {
+                    span.style.top = '-30px';
+                    span.textContent = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                }
+                span.style.top = parseFloat(span.style.top) + 20 + 'px';
+            });
+        }, 100);
     </script>
 </body>
 </html>
