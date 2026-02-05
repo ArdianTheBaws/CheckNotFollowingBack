@@ -1,336 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Follow Checker 😎📉</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            color: #ddd;
-            text-align: center;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            background: #000;
-            position: relative;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            max-width: 90%;
-            width: 800px;
-            background-color: rgba(40, 40, 40, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-            margin: 0;
-        }
-        
-        h1 {
-            color: #0f0;
-            font-size: 2.5em;
-            margin: 0;
-            padding: 0.5em;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-        
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #0f0;
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .custom-file-upload {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 1em;
-            font-weight: bold;
-            color: #fff;
-            background-color: #333;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            position: relative;
-            width: 100%;
-            text-align: center;
-        }
-        
-        .custom-file-upload:hover {
-            background-color: #555;
-        }
-        
-        input[type="file"] {
-            display: none;
-        }
-        
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #444;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2em;
-            width: 100%;
-            text-align: center;
-            margin-top: 10px;
-        }
-        
-        button:hover {
-            background-color: #666;
-        }
-        
-        .results {
-            margin-top: 20px;
-            font-size: 1.2em;
-            max-height: 400px;
-            overflow-y: auto;
-            background-color: rgba(50, 50, 50, 0.9);
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: none;
-        }
-        
-        .results ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .results li {
-            margin: 10px 0;
-        }
-        
-        .results a {
-            text-decoration: none;
-            color: #1e90ff;
-            font-weight: bold;
-        }
-        
-        .results a:hover {
-            text-decoration: underline;
-        }
-        
-        .emoji {
-            font-size: 1.5em;
-        }
-        
-        .language-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 2;
-        }
-
-        .language-selector img {
-            width: 40px;
-            cursor: pointer;
-            margin-left: 10px;
-        }
-        
-        /* Matrix Rain Effect */
-        .matrix {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .matrix span {
-            position: absolute;
-            color: #0f0;
-            font-family: monospace;
-            font-size: 20px;
-            white-space: nowrap;
-            opacity: 0.8;
-            animation: rain 5s linear infinite;
-        }
-
-        @keyframes rain {
-            to {
-                transform: translateY(100vh);
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Instagram Follow Checker 😎📉</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: black;
+    color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    width: 800px;
+    max-width: 90%;
+    background: rgba(40,40,40,0.9);
+    padding: 20px;
+    border-radius: 8px;
+}
+h1 {
+    color: #0f0;
+    text-align: center;
+}
+label, button {
+    width: 100%;
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background: #444;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+label:hover, button:hover {
+    background: #666;
+}
+input[type="file"] {
+    display: none;
+}
+.results {
+    margin-top: 20px;
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
+.results ul {
+    list-style: none;
+    padding: 0;
+}
+.results li {
+    margin: 5px 0;
+}
+.results a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+</style>
 </head>
+
 <body>
-    <div class="matrix">
-        <!-- Matrix rain effect generated by JavaScript -->
-    </div>
-    <div class="language-selector">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Norway.svg" alt="Norwegian" id="flag-no" onclick="setLanguage('no')">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg" alt="English" id="flag-en" onclick="setLanguage('en')">
-    </div>
-    <div class="container">
-        <h1 id="title">Instagram Follow Checker 😎📉</h1>
-        <p class="emoji" id="description">Upload your "Following" and "Followers" JSON files below to find out who’s not following you back! 📂🕵️‍♂️</p>
-        <form id="uploadForm"> 
-  
-            
-            <label for="followersFile" class="custom-file-upload">
-                <span id="followersFileName">Choose "Followers" JSON file 📁</span>
-            </label>
-            <input type="file" id="followersFile" accept=".json" required>
-                      <label for="followingFile" class="custom-file-upload">
-                <span id="followingFileName">Choose "Following" JSON file 📁</span>
-            </label>
-            <input type="file" id="followingFile" accept=".json" required>
-            <button type="button" onclick="checkFollowers()" id="checkButton">Check Now 🚀</button>
-        </form>
-        <div class="results" id="results">
-            <!-- Results will be inserted here -->
-        </div>
-    </div>
-    <script>
-        const translations = {
-            en: {
-                title: "Instagram Follow Checker 😎📉",
-                description: 'Upload your "Following" and "Followers" JSON files below to find out who’s not following you back! 📂🕵️‍♂️',
-                followingFileName: 'Choose "Following" JSON file 📁',
-                followersFileName: 'Choose "Followers" JSON file 📁',
-                checkButton: 'Check Now 🚀',
-                noResults: 'No results yet. Upload files to check. 🌟',
-                error: 'Error parsing JSON file.',
-                resultsHeader: 'Oops! 🚫 Here’s the list of users not following you back:'
-            },
-            no: {
-                title: "Instagram Følge Sjekker 😎📉",
-                description: 'Last opp dine "Following" og "Followers" JSON-filer nedenfor for å finne ut hvem som ikke følger deg tilbake! 📂🕵️‍♂️',
-                followingFileName: 'Velg "Following" JSON-fil 📁',
-                followersFileName: 'Velg "Followers" JSON-fil 📁',
-                checkButton: 'Sjekk Nå 🚀',
-                noResults: 'Ingen resultater ennå. Last opp filer for å sjekke. 🌟',
-                error: 'Feil ved parsing av JSON-fil.',
-                resultsHeader: 'Oops! 🚫 Her er listen over brukere som ikke følger deg tilbake:'
+<div class="container">
+    <h1>Instagram Follow Checker 😎📉</h1>
+
+    <label for="followersFile" id="followersLabel">Choose Followers file 📁</label>
+    <input type="file" id="followersFile" accept=".json">
+
+    <label for="followingFile" id="followingLabel">Choose Following file 📁</label>
+    <input type="file" id="followingFile" accept=".json">
+
+    <button onclick="checkFollowers()">Check Now 🚀</button>
+
+    <div class="results" id="results"></div>
+</div>
+
+<script>
+function updateLabel(inputId, labelId) {
+    const input = document.getElementById(inputId);
+    const label = document.getElementById(labelId);
+    input.addEventListener("change", () => {
+        label.textContent = input.files[0]?.name || "Choose file 📁";
+    });
+}
+
+updateLabel("followersFile", "followersLabel");
+updateLabel("followingFile", "followingLabel");
+
+function readFile(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                resolve(JSON.parse(reader.result));
+            } catch {
+                reject();
             }
         };
+        reader.readAsText(file);
+    });
+}
 
-        function setLanguage(language) {
-            document.getElementById('title').textContent = translations[language].title;
-            document.getElementById('description').textContent = translations[language].description;
-            document.getElementById('followingFileName').textContent = translations[language].followingFileName;
-            document.getElementById('followersFileName').textContent = translations[language].followersFileName;
-            document.getElementById('checkButton').textContent = translations[language].checkButton;
-        }
+function extractUsersFromFollowers(data) {
+    const users = new Set();
+    data.forEach(entry => {
+        entry.string_list_data.forEach(item => {
+            users.add(item.value);
+        });
+    });
+    return users;
+}
 
-        function readFile(file, callback) {
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                try {
-                    const jsonData = JSON.parse(event.target.result);
-                    callback(jsonData);
-                } catch (e) {
-                    alert(translations[document.querySelector('html').lang || 'en'].error);
-                }
-            };
-            reader.readAsText(file);
-        }
+function extractUsersFromFollowing(data) {
+    const users = new Set();
+    data.forEach(entry => {
+        entry.string_list_data.forEach(item => {
+            users.add(entry.title);
+        });
+    });
+    return users;
+}
 
-        function checkFollowers() {
-            const followingFile = document.getElementById('followingFile').files[0];
-            const followersFile = document.getElementById('followersFile').files[0];
+async function checkFollowers() {
+    const followersFile = document.getElementById("followersFile").files[0];
+    const followingFile = document.getElementById("followingFile").files[0];
 
-            if (!followingFile || !followersFile) {
-                alert('Please upload both the "Following" and "Followers" files.');
-                return;
-            }
+    if (!followersFile || !followingFile) {
+        alert("Upload both files");
+        return;
+    }
 
-            readFile(followingFile, function(followingData) {
-                readFile(followersFile, function(followersData) {
-                    const followingUsers = extractUserInfo(followingData, 'relationships_following');
-                    const followersUsers = extractUserInfo(followersData);
+    const followersData = await readFile(followersFile);
+    const followingData = await readFile(followingFile);
 
-                    const notFollowingBack = Object.entries(followingUsers)
-                        .filter(([user]) => !followersUsers[user])
-                        .map(([user, link]) => `<li><a href="${link}" target="_blank">${user}</a></li>`)
-                        .join('');
+    const followers = extractUsersFromFollowers(followersData);
+    const following = extractUsersFromFollowing(followingData.relationships_following);
 
-                    const resultsDiv = document.getElementById('results');
-                    resultsDiv.innerHTML = notFollowingBack 
-                        ? `<h2>${translations[document.querySelector('html').lang || 'en'].resultsHeader}</h2><ul>${notFollowingBack}</ul>` 
-                        : `<p>${translations[document.querySelector('html').lang || 'en'].noResults}</p>`;
-                    
-                    // Show results div
-                    resultsDiv.style.display = 'block';
-                });
-            });
-        }
+    const notBack = [...following].filter(u => !followers.has(u));
 
-        function extractUserInfo(data, key) {
-            const userInfo = {};
-            const items = key ? data[key] || [] : data;
+    const results = document.getElementById("results");
+    results.style.display = "block";
 
-            items.forEach(entry => {
-                (entry.string_list_data || []).forEach(item => {
-                    const username = item.value;
-                    const link = item.href;
-                    if (username && link) {
-                        userInfo[username] = link;
-                    }
-                });
-            });
+    if (!notBack.length) {
+        results.innerHTML = "<p>Everyone follows you back 🎉</p>";
+        return;
+    }
 
-            return userInfo;
-        }
-
-        function createMatrixRain() {
-            const matrixContainer = document.querySelector('.matrix');
-            const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
-            const characterArray = characters.split('');
-            const matrixWidth = window.innerWidth;
-            const matrixHeight = window.innerHeight;
-
-            for (let i = 0; i < 100; i++) {
-                const span = document.createElement('span');
-                span.textContent = characterArray[Math.floor(Math.random() * characterArray.length)];
-                span.style.left = `${Math.random() * matrixWidth}px`;
-                span.style.top = `${Math.random() * matrixHeight}px`;
-                span.style.fontSize = `${Math.random() * 20 + 15}px`;
-                span.style.animationDuration = `${Math.random() * 5 + 5}s`;
-                matrixContainer.appendChild(span);
-            }
-        }
-
-        function handleFileChange(event) {
-            const fileInput = event.target;
-            const label = fileInput.previousElementSibling;
-            const fileName = fileInput.files[0] ? fileInput.files[0].name : 'Choose file';
-            label.querySelector('span').textContent = fileName;
-        }
-
-        document.getElementById('followingFile').addEventListener('change', handleFileChange);
-        document.getElementById('followersFile').addEventListener('change', handleFileChange);
-
-        window.addEventListener('load', createMatrixRain);
-    </script>
+    results.innerHTML =
+        "<h2>Not following you back 🚫</h2><ul>" +
+        notBack.map(u =>
+            `<li><a href="https://instagram.com/${u}" target="_blank">${u}</a></li>`
+        ).join("") +
+        "</ul>";
+}
+</script>
 </body>
 </html>
